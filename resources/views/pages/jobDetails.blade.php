@@ -1,0 +1,217 @@
+@extends('layout.index')
+
+@section('content')
+
+  @section('title')
+      {{ $jobpost->title }}
+  @endsection
+
+  <section class="bg-base-200 p-6 md:p-10">
+
+    <!-- Breadcrumb -->
+    <!-- <div class="text-sm breadcrumbs mb-6">
+      <ul>
+        <li>Home</li>
+        <li>Jobs</li>
+        <li>Software Engineer</li>
+      </ul>
+    </div> -->
+
+    <!-- Job Header -->
+    <div class="card bg-warning shadow-lg mb-8">
+      <div class="card-body md:flex-row justify-between items-center">
+        <div class="flex items-center gap-4">
+          <div class="avatar placeholder">
+            <div class="bg-error text-white rounded-lg w-14">
+              <img src="{{ $jobpost->companyDetail->logo ? asset('storage/' . $jobpost->companyDetail->logo) : 'https://d2jhcfgvzjqsa8.cloudfront.net/storage/2022/04/download.png' }}" alt="">
+            </div>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold">{{ $jobpost->post_title }}</h1>
+            <p>{{ $jobpost->companyDetail->name }}</p>
+          </div>
+        </div>
+
+        <a href="{{ $jobpost->apply_link }}" target="_blank" class="btn btn-error mt-4 md:mt-0">
+          Apply Now
+        </a>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="grid lg:grid-cols-12 gap-6">
+
+      <!-- LEFT CONTENT -->
+      <div class="lg:col-span-8 space-y-6">
+
+        <!-- Job Overview -->
+        <div class="card shadow-md">
+            <h3 class="font-bold text-lg mb-3 text-white rounded-t-xl bg-error p-3">
+              Job Overview
+            </h3>
+          <div class="card-body">
+
+            <ul class="space-y-2">
+              <li><b>Job Title:</b> {{ $jobpost->post_title }}</li>
+              <li><b>Company:</b> {{ $jobpost->companyDetail->name }}</li>
+              <li><b>Location:</b> {{ $jobpost->location }}</li>
+              <!-- <li><b>Job Type:</b> </li> -->
+              <!-- <li><b>Experience:</b> {{ $jobpost->experience }}</li> -->
+              <li><b>Salary:</b> {{ $jobpost->salary }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="card shadow-md">
+            <h3 class="font-bold text-lg mb-3 text-white bg-success p-3 rounded-t-xl">
+              Job Description
+            </h3>
+          <div class="card-body">
+                {!! $jobpost->description !!}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="lg:col-span-4 space-y-6">
+
+        <!-- Job Summary -->
+        <div class="card shadow-md">
+          <h3 class="font-bold bg-success rounded-t-xl p-3 text-white">Job Summary</h3>
+          <div class="card-body">
+            <p>📍 {{ $jobpost->location }}</p>
+            <!-- <p>💼 Full Time</p> -->
+            <!-- <p>⭐ 2–4 Years</p> -->
+            <p>💰 {{ $jobpost->salary }}</p>
+            <p>
+              @foreach ($jobpost->types as $jobType)
+                  <a class="underline text-blue-600" href="{{ route('link', ['type' => 'type', 'slug' => $jobType->slug]) }}"><i class="fa-solid fa-hashtag me-1"></i>{{ $jobType->name }}</a>
+              @endforeach
+            </p>
+          </div>
+        </div>
+
+        <!-- Company Info -->
+        <div class="card bg-base-100 shadow-xl border border-base-300">
+
+      <div class="bg-error text-white p-4 rounded-t-xl">
+          <h3 class="text-lg font-bold text-center">Company Info</h3>
+      </div>
+
+      <div class="card-body text-center">
+
+          {{-- Company Name --}}
+          <h2 class="text-xl font-semibold">
+              {{ $jobpost->companyDetail->name }}
+          </h2>
+
+          {{-- Description --}}
+          <p class="text-sm text-gray-500 mb-3">
+              {{ $jobpost->companyDetail->description }}
+          </p>
+
+          {{-- Toggle Button --}}
+          <button onclick="toggleCompanyInfo()"
+                  class="btn btn-warning btn-sm mt-2">
+              View Company Profile
+          </button>
+
+          {{-- Hidden Section --}}
+          <div id="companyExtraInfo"
+               class="hidden mt-5 space-y-4 text-sm">
+
+              {{-- Website --}}
+              <div class="flex items-center justify-center gap-2 p-3 bg-base-200 rounded-lg shadow-sm">
+                  <i class="fa-solid fa-globe text-primary"></i>
+                  <a href="{{ $jobpost->companyDetail->website }}"
+                     target="_blank"
+                     class="link link-primary break-all">
+                      {{ $jobpost->companyDetail->website }}
+                  </a>
+              </div>
+
+              {{-- Email --}}
+              <div class="flex items-center justify-center gap-2 p-3 bg-base-200 rounded-lg shadow-sm">
+                  <i class="fa-solid fa-envelope text-secondary"></i>
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ $jobpost->companyDetail->email }}"
+                     target="_blank"
+                     class="link link-secondary break-all">
+                      {{ $jobpost->companyDetail->email }}
+                  </a>
+              </div>
+
+              {{-- Phone --}}
+              <div class="flex items-center justify-center gap-2 p-3 bg-base-200 rounded-lg shadow-sm">
+                  <i class="fa-solid fa-phone text-accent"></i>
+                  <a href="tel:{{ $jobpost->companyDetail->phone }}"
+                     class="link link-accent">
+                      {{ $jobpost->companyDetail->phone }}
+                  </a>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+        <!-- Share -->
+        <div class="card shadow-md">
+          <h3 class="font-bold bg-[#1A77F2] p-3 text-white rounded-t-xl">Share Job</h3>
+          <div class="card-body text-center">
+            <div class="flex justify-center gap-4 text-xl">
+
+
+              {{-- check korchilam --}}
+              <!-- <a href="{{ request()->fullUrl() }}"
+                   target="_blank"
+                   class="btn btn-circle bg-blue-600 text-white">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a> -->
+
+              {{-- Facebook --}}
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank"
+                class="btn btn-circle bg-blue-600 text-white">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+
+              {{-- whatsapp--}}
+              <a href="https://wa.me/?text={{ urlencode(request()->fullUrl()) }}" target="_blank"
+                class="btn btn-circle bg-green-500 text-white">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+
+              {{-- Twitter --}}
+              <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode($jobpost->post_title) }}"
+                target="_blank" class="btn btn-circle bg-black text-white">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+
+              {{-- LinkedIn --}}
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(request()->fullUrl()) }}"
+                target="_blank" class="btn btn-circle bg-blue-800 text-white">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Job -->
+        <!-- <div class="card shadow-md">
+          <h3 class="font-bold bg-warning p-3 text-white">Save Job</h3>
+          <div class="card-body text-center">
+            <button class="btn btn-success btn-sm">
+              Save Job
+            </button>
+          </div>
+        </div> -->
+
+      </aside>
+
+    </div>
+
+  </section>
+
+
+@endsection
