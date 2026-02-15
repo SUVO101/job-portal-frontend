@@ -12,19 +12,19 @@
     <div class="flex w-full flex-col lg:flex-row gap-6">
 
     <!-- ===================== STATES ===================== -->
-    <div class="card bg-base-200 rounded-2xl w-full lg:w-2/3 p-5">
+    <div class="card bg-base-200 rounded-none w-full lg:w-2/3 p-5">
 
         <div class="flex items-center mb-4">
             <div class="w-1 h-6 bg-error rounded mr-3"></div>
             <h3 class="font-bold text-lg">States</h3>
         </div>
 
-        <div class="flex flex-wrap gap-2 max-h-64 overflow-y-auto pr-2">
+        <div class="flex flex-wrap gap-2 max-h-32 overflow-y-auto pr-2">
 
             @foreach ($states as $state)
                 <a 
                     href="{{ route('link', ['type' => 'state', 'slug' => $state->slug]) }}"
-                    class="btn btn-primary btn-outline btn-xs hover:btn-error transition-all duration-200">
+                    class="btn btn-secondary btn-outline btn-xs hover:btn-error transition-all duration-200">
                     <i class="fa-solid fa-location-dot mr-1"></i>
                     {{ $state->short_name }}
                 </a>
@@ -35,7 +35,7 @@
 
 
     <!-- ===================== CATEGORIES ===================== -->
-    <div class="card bg-base-200 rounded-2xl w-full lg:w-1/3 p-5">
+    <div class="card bg-base-200 rounded-none w-full lg:w-1/3 p-5">
 
         <div class="flex items-center mb-4">
             <div class="w-1 h-6 bg-success rounded mr-3"></div>
@@ -72,7 +72,8 @@
 
           @foreach ($jobposts as $jobpost)
           <!-- Job Card -->
-          <div class="card bg-base-100 shadow border">
+          <!-- <div class="card bg-base-100 shadow border"> -->
+            <div class="card bg-base-100 rounded-none">
             <div class="card-body flex flex-col md:flex-row justify-between gap-4">
 
               <div class="flex gap-4 flex-1">
@@ -128,7 +129,7 @@
 
         @foreach ($recent_jobposts as $recent_jobpost)
           <!-- Recent Job Card -->
-          <div class="card bg-base-100 shadow border hover:shadow-lg transition">
+          <div class="card bg-base-100 rounded-none">
             <div class="card-body p-4">
               <h3 class="font-semibold">
                 {{ $recent_jobpost->post_title }}
@@ -155,7 +156,7 @@
 
 
     <div class="flex w-full flex-col lg:flex-row">
-      <div class="card rounded-box grid grow place-items-start p-3">
+      <div class="card rounded-none rounded-box grid grow place-items-start p-3">
         <div class="flex mb-3">
           <div class="w-1 h-6 bg-error rounded me-3"></div>
           <h3 class="font-bold mb-3">Urgent Post</h3>
@@ -167,7 +168,7 @@
         </ul>
       </div>
       <div class="divider lg:divider-horizontal"></div>
-      <div class="card rounded-box grid grow place-items-start p-3">
+      <div class="card rounded-none rounded-box grid grow place-items-start p-3">
         <div class="flex mb-3">
           <div class="w-1 h-6 bg-error rounded me-3"></div>
           <h3 class="font-bold mb-3">Featured Post</h3>
@@ -186,7 +187,7 @@
       <div class="flex w-full flex-col lg:flex-row gap-4">
 
       <!-- STATES -->
-      <div class="card bg-base-200 rounded-box grow p-4">
+      <div class="card rounded-none bg-base-200 max-h-48 overflow-y-auto rounded-box grow p-4">
         <div class="flex mb-3">
           <div class="w-1 h-6 bg-error rounded me-3"></div>
           <h3 class="font-bold mb-3">Subcategory</h3>
@@ -200,7 +201,7 @@
       </div>
 
       <!-- CATEGORIES -->
-      <div class="card bg-base-200 rounded-box grow p-4">
+      <div class="card rounded-none bg-base-200 rounded-box grow p-4">
         <div class="flex mb-3">
           <div class="w-1 h-6 bg-error rounded me-3"></div>
           <h3 class="font-bold mb-3">Types</h3>
