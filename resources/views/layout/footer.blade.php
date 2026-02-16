@@ -48,7 +48,7 @@
                shadow-[8px_8px_0px_#000] 
                p-12">
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
     <!-- ================= Brand ================= -->
     <aside class="border-4 border-black bg-pink-400 
@@ -73,7 +73,7 @@
 
 
     <!-- ================= Services ================= -->
-    <nav class="border-4 border-black bg-white 
+    <!-- <nav class="border-4 border-black bg-white 
                 shadow-[6px_6px_0px_#000] 
                 p-6">
 
@@ -86,7 +86,7 @@
         <li class="border-2 border-black px-3 py-1 bg-yellow-200 hover:translate-x-1 hover:shadow-none shadow-[3px_3px_0px_#000] transition-all">Advertisement</li>
       </ul>
 
-    </nav>
+    </nav> -->
 
 
     <!-- ================= Company ================= -->

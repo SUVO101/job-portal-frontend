@@ -100,7 +100,7 @@ class JobController extends Controller
             ->limit(5)
             ->get();
 
-        $recent_jobposts=JobPost::select(['id','post_title','location','salary','slug'])->orderBy('created_at','desc')->where('status','published')->limit(5)->get();
+        $recent_jobposts=JobPost::select(['id','post_title','location','salary','slug'])->orderBy('created_at','desc')->where('status','published')->limit(4)->get();
         $urgent_jobposts=JobPost::select(['id','post_title','slug'])->where('is_urgent',true)->orderBy('created_at','desc')->where('status','published')->limit(5)->get();
         $featured_jobposts=JobPost::select(['id','post_title','slug'])->where('is_featured',true)->orderBy('created_at','desc')->where('status','published')->limit(5)->get();
 

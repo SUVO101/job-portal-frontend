@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('pages.home');
 // })->name('home');
 
-Route::get('/about', function () {
+Route::get('/about-us', function () {
     return view('pages.about');
 })->name('about');
 
-Route::get('/contact', function () {
+Route::get('/contact-us', function () {
     return view('pages.contact');
 })->name('contact');
 

@@ -11,7 +11,7 @@
   <div class="mb-8">
 
       <!-- HEADING -->
-  <h2 class="text-2xl">
+  <h2 class="text-4xl font-black">
     @if(isset($filterType) && isset($filterName))
 
         @if($filterType === 'category')
@@ -40,7 +40,7 @@
 
    @foreach ($jobposts as $jobpost)
           <!-- Job Card -->
-          <div class="card bg-base-100 shadow border mt-3 mb-3">
+          <div class="card bg-base-100 rounded-none mt-3 mb-3">
             <div class="card-body flex flex-col md:flex-row justify-between gap-4">
 
               <div class="flex gap-4 flex-1">
@@ -68,7 +68,7 @@
                 </div>
               </div>
 
-              <a class="btn btn-warning btn-sm w-full md:w-auto" href="{{ route('post_link',['slug'=>$jobpost->slug]) }}">
+              <a class="my-btn bg-yellow-400 btn-sm h-10" href="{{ route('post_link',['slug'=>$jobpost->slug]) }}">
                 View Details →
   </a>
 
@@ -76,7 +76,9 @@
           </div>
           @endforeach
   
-          {{ $jobposts->links() }}
+          <div class="mt-4">
+            {{ $jobposts->links() }}
+          </div>
 
 
     </div>

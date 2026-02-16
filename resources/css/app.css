@@ -40,6 +40,11 @@
            shadow-[4px_4px_0px_#000];
   }
 
+.my-btn{
+  @apply pt-2 pb-2 ps-3 pe-3 border-3 border-black rounded-none 
+           shadow-[4px_4px_0px_#000];
+}
+
   /* ================= INPUT ================= */
   .input {
     @apply border-4 border-black rounded-none;

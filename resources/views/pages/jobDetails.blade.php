@@ -18,7 +18,7 @@
     </div> -->
 
     <!-- Job Header -->
-    <div class="card bg-warning shadow-lg mb-8">
+    <div class="card bg-yellow-300 rounded-none mb-8">
       <div class="card-body md:flex-row justify-between items-center">
         <div class="flex items-center gap-4">
           <div class="avatar placeholder">
@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <a href="{{ $jobpost->apply_link }}" target="_blank" class="btn btn-error mt-4 md:mt-0">
+        <a href="{{ $jobpost->apply_link }}" target="_blank" class="my-btn bg-blue-400 text-white mt-4 md:mt-0">
           Apply Now
         </a>
       </div>
@@ -45,8 +45,8 @@
       <div class="lg:col-span-8 space-y-6">
 
         <!-- Job Overview -->
-        <div class="card shadow-md">
-            <h3 class="font-bold text-lg mb-3 text-white rounded-t-xl bg-error p-3">
+        <div class="card rounded-none">
+            <h3 class="font-bold text-lg mb-3 text-white  bg-pink-500 p-3">
               Job Overview
             </h3>
           <div class="card-body">
@@ -63,8 +63,8 @@
         </div>
 
         <!-- Description -->
-        <div class="card shadow-md">
-            <h3 class="font-bold text-lg mb-3 text-white bg-success p-3 rounded-t-xl">
+        <div class="card rounded-none">
+            <h3 class="font-bold text-lg mb-3 text-white bg-blue-500 p-3 ">
               Job Description
             </h3>
           <div class="card-body">
@@ -78,8 +78,8 @@
       <aside class="lg:col-span-4 space-y-6">
 
         <!-- Job Summary -->
-        <div class="card shadow-md">
-          <h3 class="font-bold bg-success rounded-t-xl p-3 text-white">Job Summary</h3>
+        <div class="card rounded-none">
+          <h3 class="font-bold bg-blue-500 p-3 text-white">Job Summary</h3>
           <div class="card-body">
             <p>📍 {{ $jobpost->location }}</p>
             <!-- <p>💼 Full Time</p> -->
@@ -94,9 +94,9 @@
         </div>
 
         <!-- Company Info -->
-        <div class="card bg-base-100 shadow-xl border border-base-300">
+        <div class="card bg-base-100 rounded-none">
 
-      <div class="bg-error text-white p-4 rounded-t-xl">
+      <div class="bg-pink-500 text-white p-4 ">
           <h3 class="text-lg font-bold text-center">Company Info</h3>
       </div>
 
@@ -114,7 +114,7 @@
 
           {{-- Toggle Button --}}
           <button onclick="toggleCompanyInfo()"
-                  class="btn btn-warning btn-sm mt-2">
+                  class="my-btn bg-green-500 mt-2">
               View Company Profile
           </button>
 
@@ -156,8 +156,8 @@
   </div>
 
         <!-- Share -->
-        <div class="card shadow-md">
-          <h3 class="font-bold bg-[#1A77F2] p-3 text-white rounded-t-xl">Share Job</h3>
+        <div class="card rounded-none">
+          <h3 class="font-bold bg-[#1A77F2] p-3 text-white ">Share Job</h3>
           <div class="card-body text-center">
             <div class="flex justify-center gap-4 text-xl">
 
