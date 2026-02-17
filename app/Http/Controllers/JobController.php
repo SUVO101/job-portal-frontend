@@ -222,6 +222,42 @@ class JobController extends Controller
                 ])
                 ->latest('job_posts.created_at')
                 ->paginate(3);
+        }elseif($type === 'urgent'){
+            // $type = Type::where('slug', $slug)->first();
+
+            $jobposts = JobPost::select([
+                    'job_posts.id',
+                    'job_posts.company_detail_id',
+                    'job_posts.post_title',
+                    'job_posts.slug',
+                    'job_posts.created_at'
+                ])
+                ->with([
+                    'companyDetail:id,name,logo',
+                    'counter:id,job_post_id,view_count,apply_count',
+                    'types:id,name'
+                ])
+                ->where('is_urgent',true)
+                ->latest('job_posts.created_at')
+                ->paginate(3);
+        }elseif($type === 'featured'){
+            // $type = Type::where('slug', $slug)->first();
+
+            $jobposts = JobPost::select([
+                    'job_posts.id',
+                    'job_posts.company_detail_id',
+                    'job_posts.post_title',
+                    'job_posts.slug',
+                    'job_posts.created_at'
+                ])
+                ->with([
+                    'companyDetail:id,name,logo',
+                    'counter:id,job_post_id,view_count,apply_count',
+                    'types:id,name'
+                ])
+                ->where('is_featured',true)
+                ->latest('job_posts.created_at')
+                ->paginate(3);
         }elseif($type === 'all'){
             $jobposts = JobPost::select([
                 'job_posts.id',
@@ -266,5 +302,46 @@ class JobController extends Controller
         //return $jobpost;
 
         return view('pages.jobDetails',compact('jobpost'));
+    }
+
+    public function search(Request $request){
+        $search = $request->search;
+        $location = $request->location;
+
+        $query = JobPost::select([
+        'job_posts.id',
+        'job_posts.company_detail_id',
+        'job_posts.post_title',
+        'job_posts.slug',
+        'job_posts.created_at'
+    ])
+    ->with([
+        'companyDetail:id,name,logo',
+        'counter:id,job_post_id,view_count,apply_count',
+        'types:id,name'
+    ]);
+
+    // 🔍 Search filter
+    if (!empty($search)) {
+        $query->where('post_title', 'like', '%' . $search . '%');
+    }
+
+    // 📍 Location filter
+    if (!empty($location)) {
+        $state = State::where('slug', $location)->first();
+
+        if ($state) {
+            $query->whereHas('states', function ($q) use ($state) {
+                $q->where('states.id', $state->id);
+            });
+        }
+    }
+
+    $jobposts = $query
+        ->latest('job_posts.created_at')
+        ->paginate(3)
+        ->withQueryString();
+
+    return view('pages.allJobs', compact('jobposts', 'search', 'location'));
     }
 }

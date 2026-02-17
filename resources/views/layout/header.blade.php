@@ -68,7 +68,7 @@
                href="{{ route('home') }}">Home</a></li>
 
         <li><a class="font-bold hover:translate-x-1 transition-all"
-               href="">Companies</a></li>
+               href="{{ route('link', ['type' => 'all', 'slug' => 'all']) }}">All Jobs</a></li>
 
         <li><a class="font-bold hover:translate-x-1 transition-all"
                href="{{ route('about') }}">About</a></li>
@@ -100,8 +100,8 @@
 
       <li>
         <a class="hover:translate-x-1 transition-all"
-           href="">
-          Companies
+           href="{{ route('link', ['type' => 'all', 'slug' => 'all']) }}">
+          All Jobs
         </a>
       </li>
 

@@ -5,7 +5,7 @@
 <!-- dynamic content -->
 @section('content')
 
-  @include('layout.hero')
+  @include('layout.hero',['states' => $states])
 
   <section class="pt-12 pb-8 px-6 md:px-8 bg-base-200">
 
@@ -64,9 +64,12 @@
       <!-- LEFT SIDE (8 COL STYLE) -->
       <div class="flex-1 space-y-6">
 
-        <h2 class="text-2xl font-bold">
-          Latest Job Listings
-        </h2>
+      <div class="flex items-center mb-4">
+          <div class="w-3 h-8 bg-green-500 rounded-none mr-3 mt-3 mb-4"></div>
+          <h2 class="text-3xl font-black">
+            Latest Job Listings
+          </h2>
+        </div>
 
         @foreach ($jobposts as $jobpost)
           <!-- Job Card -->
@@ -123,9 +126,12 @@
       <!-- RIGHT SIDE (Recent Jobs Better Style) -->
       <aside class="lg:w-80 space-y-6">
 
-        <h2 class="text-2xl font-bold">
-          Recent Job Listings
-        </h2>
+        <div class="flex items-center mb-4">
+          <div class="w-2 h-8 bg-blue-500 rounded-none mr-3 mt-3 mb-4"></div>
+          <h2 class="text-2xl font-black">
+            Recent Job Listings
+          </h2>
+        </div>
 
         @foreach ($recent_jobposts as $recent_jobpost)
           <!-- Recent Job Card -->
@@ -164,28 +170,38 @@
     <div class="flex w-full flex-col lg:flex-row">
       <div class="card rounded-none rounded-box grid grow place-items-start p-3">
         <div class="flex mb-3">
-          <div class="w-1 h-6 bg-error rounded me-3"></div>
-          <h3 class="font-bold mb-3">Urgent Post</h3>
+          <div class="w-2 h-8 bg-red-500 rounded-none me-3 mb-4"></div>
+          <h3 class="font-black text-3xl">Urgent Post</h3>
         </div>
         <ul>
           @foreach ($urgent_jobposts as $urgent_jobpost)
-            <li><i class="fa-regular fa-hand-point-right me-2 text-red-700"></i><a href=""
-                class="text-red-500">{{ $urgent_jobpost->post_title }}</a></li>
+            <li><i class="fa-regular fa-hand-point-right me-2 text-red-700"></i><a
+                href="{{ route('post_link', ['slug' => $urgent_jobpost->slug]) }}" class="text-red-500">{{
+                $urgent_jobpost->post_title }}</a></li>
           @endforeach
         </ul>
+        <div class="flex justify-center mt-4 align-center">
+          <a class="my-btn bg-red-500 text-sm mt-2 text-center font-black"
+            href="{{ route('link', ['type' => 'urgent', 'slug' => 'all']) }}">View all...</a>
+        </div>
       </div>
       <div class="divider lg:divider-horizontal"></div>
       <div class="card rounded-none rounded-box grid grow place-items-start p-3">
         <div class="flex mb-3">
-          <div class="w-1 h-6 bg-error rounded me-3"></div>
-          <h3 class="font-bold mb-3">Featured Post</h3>
+          <div class="w-2 h-8 bg-blue-500 rounded-none me-3 mb-4"></div>
+          <h3 class="font-black text-3xl">Featured Post</h3>
         </div>
         <ul>
           @foreach ($featured_jobposts as $featured_jobpost)
-            <li><i class="fa-regular fa-hand-point-right text-blue-700 me-2"></i><a href=""
-                class="text-blue-500">{{ $featured_jobpost->post_title }}</a></li>
+            <li><i class="fa-regular fa-hand-point-right text-blue-700 me-2"></i><a
+                href="{{ route('post_link', ['slug' => $featured_jobpost->slug]) }}" class="text-blue-500">{{
+                $featured_jobpost->post_title }}</a></li>
           @endforeach
         </ul>
+        <div class="flex justify-center mt-4 align-center">
+          <a class="my-btn bg-blue-500 text-sm mt-2 text-center font-black"
+            href="{{ route('link', ['type' => 'featured', 'slug' => 'all']) }}">View all...</a>
+        </div>
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 @extends('layout.index')
 @section('content')
-@section('title','contact Page')
+@section('title','Contact Page - '.env('WEBSITE_NAME'))
 <!-- Contact Us Section -->
 <section class="py-16 px-6 bg-yellow-200 
                 border-t-4 border-black 

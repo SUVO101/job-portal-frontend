@@ -34,24 +34,29 @@
               shadow-[6px_6px_0px_#000] 
               p-6">
 
+              <form action="{{ route('search') }}" method="GET">
     <div class="flex flex-wrap justify-center gap-4">
 
-      <!-- Job Title -->
-      <input type="text"
-             placeholder="Job title"
-             class="input w-56 bg-white text-black">
+        <!-- Job Title -->
+        <input type="text" name="search"
+               placeholder="Job title"
+               class="input w-56 bg-white text-black">
 
-      <!-- Location -->
-      <input type="text"
-             placeholder="Location"
-             class="input w-56 bg-white text-black">
+        <!-- Location -->
+        <select class="select w-48 text-black" name="location">
+          <option disabled selected>Select State</option>
+          @foreach($states as $state)
+            <option value="{{ $state->slug }}"> {{ $state->short_name }} </option>
+          @endforeach
+        </select>
 
-      <!-- Button -->
-      <button class="btn bg-pink-500 text-white px-6">
-        Search Jobs
-      </button>
-
-    </div>
+        <!-- Button -->
+        <button class="my-btn bg-green-500 font-black px-6" type="submit">
+          Search Jobs
+        </button>
+        
+      </div>
+    </form>
 
   </div>
 
