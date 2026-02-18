@@ -1,6 +1,6 @@
 @extends('layout.index')
-@section('content')
 @section('title','About Page - '.env('WEBSITE_NAME'))
+@section('content')
 <!-- About Us Section -->
 <section class="py-12 px-6 bg-base-200">
 

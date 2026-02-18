@@ -94,13 +94,13 @@
                 shadow-[6px_6px_0px_#000] 
                 p-6">
 
-      <h6 class="font-black text-lg mb-4">Company</h6>
+      <h6 class="font-black text-lg mb-4">Pages</h6>
 
       <ul class="space-y-3 font-bold">
-        <li class="border-2 border-black px-3 py-1 bg-pink-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('home') }}">Home</a></li>
-        <li class="border-2 border-black px-3 py-1 bg-pink-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('link', ['type' => 'all', 'slug' => 'all']) }}">All Jobs</a></li>
-        <li class="border-2 border-black px-3 py-1 bg-pink-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('about') }}">About us</a></li>
-        <li class="border-2 border-black px-3 py-1 bg-pink-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('contact') }}">Contact</a></li>
+        <li class="border-2 border-black px-3 py-1 bg-yellow-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('home') }}">Home</a></li>
+        <li class="border-2 border-black px-3 py-1 bg-yellow-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('link', ['type' => 'all', 'slug' => 'all']) }}">All Jobs</a></li>
+        <li class="border-2 border-black px-3 py-1 bg-yellow-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('about') }}">About us</a></li>
+        <li class="border-2 border-black px-3 py-1 bg-yellow-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('contact') }}">Contact</a></li>
       </ul>
 
     </nav>
@@ -114,8 +114,8 @@
       <h6 class="font-black text-lg mb-4">Legal</h6>
 
       <ul class="space-y-3 font-bold">
-        <li class="border-2 border-black px-3 py-1 bg-cyan-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('terms-and-conditions') }}">Terms of use</a></li>
-        <li class="border-2 border-black px-3 py-1 bg-cyan-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('privacy-policy') }}">Privacy policy</a></li>
+        <li class="border-2 border-black px-3 py-1 bg-blue-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('terms-and-conditions') }}">Terms of use</a></li>
+        <li class="border-2 border-black px-3 py-1 bg-blue-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all"><a href="{{ route('privacy-policy') }}">Privacy policy</a></li>
         <!-- <li class="border-2 border-black px-3 py-1 bg-cyan-200 shadow-[3px_3px_0px_#000] hover:translate-x-1 transition-all">Cookie policy</li> -->
       </ul>
 

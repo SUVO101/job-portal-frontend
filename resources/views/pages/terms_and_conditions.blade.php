@@ -1,6 +1,6 @@
 @extends('layout.index')
-@section('content')
 @section('title','Terms and Conditions - '.env('WEBSITE_NAME'))
+@section('content')
 <!-- Contact Us Section -->
 <section class="py-16 px-6 bg-yellow-200 
                 border-t-4 border-black 

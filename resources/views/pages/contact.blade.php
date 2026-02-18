@@ -1,6 +1,6 @@
 @extends('layout.index')
-@section('content')
 @section('title','Contact Page - '.env('WEBSITE_NAME'))
+@section('content')
 <!-- Contact Us Section -->
 <section class="py-16 px-6 bg-yellow-200 
                 border-t-4 border-black 
@@ -19,8 +19,20 @@
 
   </div>
 
+  @if(session('success'))
+    <section class="bg-green-400 
+                    border-4 border-black 
+                    shadow-[8px_8px_0px_#000] 
+                    p-4 text-center my-10 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-black mb-4">
+            {{ session('success') }}
+        </h2>
+    </section>
+@endif
 
   <!-- ================= Form Card ================= -->
+   <form action="{{ route('contact.store') }}" method="post">
+    @csrf
   <div class="max-w-4xl mx-auto 
               bg-white 
               border-4 border-black 
@@ -32,6 +44,7 @@
 
       <input type="text"
              placeholder="Your Name"
+             name="name"
              class="w-full border-4 border-black 
                     bg-pink-200 
                     px-4 py-3 
@@ -41,6 +54,7 @@
 
       <input type="email"
              placeholder="Email Address"
+             name="email"
              class="w-full border-4 border-black 
                     bg-cyan-200 
                     px-4 py-3 
@@ -53,6 +67,7 @@
     <!-- Subject -->
     <input type="text"
            placeholder="Subject"
+           name="subject"
            class="w-full mt-6 border-4 border-black 
                   bg-yellow-200 
                   px-4 py-3 
@@ -63,6 +78,7 @@
     <!-- Message -->
     <textarea rows="5"
               placeholder="Your Message"
+              name="message"
               class="w-full mt-6 border-4 border-black 
                      bg-lime-200 
                      px-4 py-3 
@@ -78,7 +94,7 @@
                      hover:translate-x-1 
                      hover:translate-y-1 
                      hover:shadow-none 
-                     transition-all duration-150">
+                     transition-all duration-150" type="submit">
 
         Send Message
 
@@ -87,6 +103,7 @@
     </div>
 
   </div>
+  </form>
 
 </section>
 

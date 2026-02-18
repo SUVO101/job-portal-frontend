@@ -1,6 +1,6 @@
 @extends('layout.index')
-@section('content')
 @section('title','Privacy Policy - '.env('WEBSITE_NAME'))
+@section('content')
 <!-- Contact Us Section -->
 <section class="py-16 px-6 bg-pink-200 
                 border-t-4 border-black 

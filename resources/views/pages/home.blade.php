@@ -1,7 +1,5 @@
 <!-- extends the main layout -->
 @extends('layout.index')
-
-@section('title', 'homePage')
 <!-- dynamic content -->
 @section('content')
 
@@ -77,10 +75,11 @@
           <div class="card bg-base-100 rounded-none">
             <div class="card-body flex flex-col md:flex-row justify-between gap-4">
 
-              <div class="flex gap-4 flex-1">
-                <div class="avatar">
-                  <div class="w-12 rounded">
-                    <img src="{{ asset('storage' . $jobpost->companyDetail->logo) }}">
+              <div class="flex flex-col sm:flex-row gap-4 flex-1">
+                <div class="avatar mx-auto md:mx-0">
+                  <div class="w-24">
+                    <img src="{{ asset('storage/' . $jobpost->companyDetail->logo) }}">
+                     <!-- <img src="/company_logos/b.png"> -->
                   </div>
                 </div>
 
@@ -96,7 +95,7 @@
 
                   <div class="flex flex-wrap gap-2 mt-2">
                     @foreach ($jobpost->types as $type)
-                      <span class="badge badge-outline">{{ $type->name }}</span>
+                      <a href="{{ route('link', ['type' => 'type', 'slug' => $type->slug]) }}"><span class="badge badge-outline bg-green-500 rounded-none border-2"># {{ $type->name }}</span></a>
                     @endforeach
                   </div>
                 </div>

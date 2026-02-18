@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\ContactUs;
 use App\Models\Counter;
 use App\Models\JobPost;
 use App\Models\State;
@@ -88,7 +89,7 @@ class JobController extends Controller
             ->with([
                 'companyDetail:id,name,logo',
                 'counter:job_post_id,view_count,apply_count',
-                'types:name'
+                'types:name,slug'
             ])
             ->where('status', 'published')
             ->whereDate('expired_at', '>=', Carbon::today())
@@ -163,7 +164,7 @@ class JobController extends Controller
                 ->with([
                     'companyDetail:id,name,logo',
                     'counter:id,job_post_id,view_count,apply_count',
-                    'types:id,name'
+                    'types:id,name,slug'
                 ])
                 ->latest('job_posts.created_at')
                 ->paginate(3);
@@ -182,7 +183,7 @@ class JobController extends Controller
                 ->with([
                     'companyDetail:id,name,logo',
                     'counter:id,job_post_id,view_count,apply_count',
-                    'types:id,name'
+                    'types:id,name,slug'
                 ])
                 ->latest('job_posts.created_at')
                 ->paginate(3);
@@ -200,7 +201,7 @@ class JobController extends Controller
                 ->with([
                     'companyDetail:id,name,logo',
                     'counter:id,job_post_id,view_count,apply_count',
-                    'types:id,name'
+                    'types:id,name,slug'
                 ])
                 ->latest('job_posts.created_at')
                 ->paginate(3);
@@ -218,7 +219,7 @@ class JobController extends Controller
                 ->with([
                     'companyDetail:id,name,logo',
                     'counter:id,job_post_id,view_count,apply_count',
-                    'types:id,name'
+                    'types:id,name,slug'
                 ])
                 ->latest('job_posts.created_at')
                 ->paginate(3);
@@ -235,7 +236,7 @@ class JobController extends Controller
                 ->with([
                     'companyDetail:id,name,logo',
                     'counter:id,job_post_id,view_count,apply_count',
-                    'types:id,name'
+                    'types:id,name,slug'
                 ])
                 ->where('is_urgent',true)
                 ->latest('job_posts.created_at')
@@ -253,7 +254,7 @@ class JobController extends Controller
                 ->with([
                     'companyDetail:id,name,logo',
                     'counter:id,job_post_id,view_count,apply_count',
-                    'types:id,name'
+                    'types:id,name,slug'
                 ])
                 ->where('is_featured',true)
                 ->latest('job_posts.created_at')
@@ -269,7 +270,7 @@ class JobController extends Controller
             ->with([
                 'companyDetail:id,name,logo',
                 'counter:id,job_post_id,view_count,apply_count',
-                'types:id,name'
+                'types:id,name,slug'
             ])
             ->latest('job_posts.created_at')
             ->paginate(3);
@@ -295,7 +296,7 @@ class JobController extends Controller
             'states:id,name,slug',
             'categories:id,name,slug',
             'subcategories:id,name,slug',
-            'media:id,file_name,file_path'
+            'media:id,job_post_id,file_name,file_path'
         ])
         ->first();
 
@@ -318,7 +319,7 @@ class JobController extends Controller
     ->with([
         'companyDetail:id,name,logo',
         'counter:id,job_post_id,view_count,apply_count',
-        'types:id,name'
+        'types:id,name,slug'
     ]);
 
     // 🔍 Search filter
@@ -343,5 +344,23 @@ class JobController extends Controller
         ->withQueryString();
 
     return view('pages.allJobs', compact('jobposts', 'search', 'location'));
+    }
+
+    public function contact(Request $request){
+        //dd($request,$request->ip(),$request->userAgent());
+        // $contact = new Contact();
+        // $contact->name = $request->name;
+        // $contact->email = $request->email;
+        // $contact->subject = $request->subject;
+        // $contact->message = $request->message;
+        // $contact->save();
+        $contact = ContactUs::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'ip_address' => $request->ip(),
+        ]);
+        return redirect()->route('contact')->with('success','Message sent successfully');
     }
 }
